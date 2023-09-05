@@ -1,0 +1,1 @@
+mklink /d "E:\PROJECT\ProjectGitFormat\DZ13\DZ13CloneTest1\UserSettings" "E:\PROJECT\ProjectGitFormat\DZ13\DZ13Main\UserSettings"
