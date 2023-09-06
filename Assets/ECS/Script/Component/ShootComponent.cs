@@ -9,7 +9,7 @@ public class ShootComponent : MonoBehaviour, IShootComponent
     [SerializeField] private GameObject bullet;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private Transform outBullet;
-    [SerializeField] private Text text;
+    //[SerializeField] private Text text;
     [SerializeField] private ParticleSystem gunExitParticle;//система частиц
     public bool IsModeBull = false;
     //соберем в лист стороние скрипты
@@ -36,7 +36,8 @@ public class ShootComponent : MonoBehaviour, IShootComponent
 
     private void DataStart()
     {
-        text.text = $"Bullet = {Statistic.ShootCount}";
+        GlobalConnectObjectPhoton.TextCountBull.text= $"Bullet = {Statistic.ShootCount}";
+        //text.text = $"Bullet = {Statistic.ShootCount}";
     }
     private void Update()//проверяем состояние данных в статистике по DZ11
     {
@@ -62,7 +63,8 @@ public class ShootComponent : MonoBehaviour, IShootComponent
         gunExitParticle.Play();
         //static
         Statistic.ShootCount++;
-        text.text = $"Bullet = {Statistic.ShootCount}";
+        GlobalConnectObjectPhoton.TextCountBull.text = $"Bullet = {Statistic.ShootCount}";
+        //text.text = $"Bullet = {Statistic.ShootCount}";
 
         if (IsModeBull)
         {

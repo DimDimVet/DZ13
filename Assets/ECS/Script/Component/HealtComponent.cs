@@ -9,7 +9,7 @@ public class HealtComponent : MonoBehaviour
     public Settings SettingsData;
     [HideInInspector] public int Healt=0;
     [HideInInspector] public bool Dead = false;
-    [SerializeField] private Text text;
+    //[SerializeField] private Text text;
     public bool statusEnemy;
     private void Start()
     {
@@ -32,8 +32,8 @@ public class HealtComponent : MonoBehaviour
         {
             Healt += SettingsData.HealtPlayer;//по заданию 12, с повышением уцровня добавляем некое количество изначально
         }
-
-        text.text = $"Healt = {Healt}";
+        GlobalConnectObjectPhoton.TextHealt.text = $"Healt = {Healt}";
+        //text.text = $"Healt = {Healt}";
     }
 
     public void UpData()//для DZ11 обновить данные при изменение источника загрузки
@@ -49,7 +49,8 @@ public class HealtComponent : MonoBehaviour
     public void HealtContoll(int damage)
     {
         Healt -= damage;
-        text.text = $"Healt = {Healt}";
+        //text.text = $"Healt = {Healt}";
+        GlobalConnectObjectPhoton.TextHealt.text = $"Healt = {Healt}";
         if (Healt<=0)
         {
             Dead = true;

@@ -1,10 +1,11 @@
 using UnityEngine;
 using Unity.Entities;
 using Unity.Mathematics;
+using Photon.Pun;
 
 public class UserInputDataComponent : MonoBehaviour, IConvertGameObjectToEntity
 {
-    public float Speed=1f;
+    public float Speed = 1f;
     public MonoBehaviour ShootAction;
     public MonoBehaviour PullAction;
     public MonoBehaviour ModeAction;
@@ -17,8 +18,11 @@ public class UserInputDataComponent : MonoBehaviour, IConvertGameObjectToEntity
 
     public void Convert(Entity entity, EntityManager entityManager, GameObjectConversionSystem conversionSystem)
     {
-        entityManager.AddComponentData(entity, new InputData());//добавим в сущность стурктуру ввода
-
+        if (PhotonView.Get(this.gameObject).IsMine)//проверим через фотон, текущий ли объект при передачи управления
+        {
+            entityManager.AddComponentData(entity, new InputData());//добавим в сущность стурктуру ввода
+        }
+        
         entityManager.AddComponentData(entity, new MoveData()//добавим в сущность стурктуру режима движения(скорость)
         {
             MoveSpeed = Speed / 100,
@@ -39,7 +43,7 @@ public class UserInputDataComponent : MonoBehaviour, IConvertGameObjectToEntity
             entityManager.AddComponentData(entity, new ModeData());//добавим в сущность стурктуру ввода режима
         }
 
-        if (AnimSpeed!=string.Empty)
+        if (AnimSpeed != string.Empty)
         {
             entityManager.AddComponentData(entity, new AnimData());//добавим в сущность стурктуру ввода анимации
         }

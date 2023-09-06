@@ -9,9 +9,9 @@ using Zenject;
 public class UpLoadDataPlayer : MonoBehaviour
 {
     //UI
-    [SerializeField] private Text saveData;
-    [SerializeField] private Text loadLocalData;
-    [SerializeField] private Text loadFireBaseData;
+    //[SerializeField] private Text saveData;
+    //[SerializeField] private Text loadLocalData;
+    //[SerializeField] private Text loadFireBaseData;
     //
     [SerializeField] private HealtComponent healtComponent;
     private string hashKey = "DataPlayer";
@@ -59,10 +59,13 @@ public class UpLoadDataPlayer : MonoBehaviour
     {
 
         /*bool isFireBase =*/ await Task.FromResult(dataConfig.LoadDataFireBase(FireBaseTool.Snapshot, out dataPlayerFireBase));//загрузим FireBase
-        loadFireBaseData.text = $"healtPlayer={dataPlayerFireBase.healtPlayer} shootCount={dataPlayerFireBase.shootCount}";
+        //loadFireBaseData.text = $"healtPlayer={dataPlayerFireBase.healtPlayer} shootCount={dataPlayerFireBase.shootCount}";
+        GlobalConnectObjectPhoton.FireBaseNameText.text = $"healtPlayer={dataPlayerFireBase.healtPlayer} shootCount={dataPlayerFireBase.shootCount}";
 
-        /*bool isLocalBase =*/ await Task.FromResult(dataConfig.LoadDataLocalBase(hashKey, out dataPlayerLocal));//загрузим LocalBase
-        loadLocalData.text = $"healtPlayer={dataPlayerLocal.healtPlayer} shootCount={dataPlayerLocal.shootCount}";
+        /*bool isLocalBase =*/
+        await Task.FromResult(dataConfig.LoadDataLocalBase(hashKey, out dataPlayerLocal));//загрузим LocalBase
+        //loadLocalData.text = $"healtPlayer={dataPlayerLocal.healtPlayer} shootCount={dataPlayerLocal.shootCount}";
+        GlobalConnectObjectPhoton.LocalBaseNameText.text = $"healtPlayer={dataPlayerLocal.healtPlayer} shootCount={dataPlayerLocal.shootCount}";
 
         dataConfig.LoadDataDefault(out dataPlayerDefault);
 
@@ -110,7 +113,7 @@ public class UpLoadDataPlayer : MonoBehaviour
     {
         if (SettingsLoadData.isSave)//включим запись если стоит разрешение DZ11
         {
-            SaveData();
+            //SaveData();
         }
     }
 
@@ -123,7 +126,8 @@ public class UpLoadDataPlayer : MonoBehaviour
         };
 
         string rezult = dataConfig.SaveData(dataPlayer, hashKey);
-        saveData.text = rezult;
+        //saveData.text = rezult;
+        GlobalConnectObjectPhoton.SetDataNameText.text = rezult;
     }
 
 }

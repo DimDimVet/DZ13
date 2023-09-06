@@ -23,6 +23,12 @@ public class CharacterData : MonoBehaviour
     }
 
     //
+    //для DZ13 фотон
+    private void Start()
+    {
+        InventoryUIRoot = GlobalConnectObjectPhoton.InventoryUIRoot;
+    }
+    //
     private void CountScore(IHealtEnemy hEnemy)
     {
         if (hEnemy.isUpData)
