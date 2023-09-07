@@ -31,6 +31,7 @@ public class ShootBehaviour : MonoBehaviour, IBehaviour
         //Nav
         agent = GetComponent<NavMeshAgent>();
     }
+
     public void Behaver()
     {
         if (thisHealtComponent.Dead != true)
@@ -49,7 +50,7 @@ public class ShootBehaviour : MonoBehaviour, IBehaviour
                 Instantiate(bullet, outBullet.position, outBullet.rotation);
                 gunExitParticle.Play();
             }
-            //
+
             target = HealtComponent.transform.position;//Player запишем в цель
             currentPosition = this.gameObject.transform.position;//проверим текущию позицию Gun
             distanceVector = target - currentPosition;//вычислим вектор между Gun-target

@@ -11,6 +11,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
+        //PlayerSample.SetActive(false);
         PhotonNetwork.ConnectUsingSettings();//запустим тестовый мастер-сервер
     }
 
@@ -31,7 +32,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         int id = PhotonNetwork.LocalPlayer.ActorNumber;
-        Debug.Log("Подключен игрок" + id + " - " + PhotonNetwork.CurrentRoom.PlayerCount);
+        Debug.Log("Подключен игрок по id" + id + " - с номером " + PhotonNetwork.CurrentRoom.PlayerCount);
         //проверим на ошибку количества
         if (id > (SpawnPonts.Count+1))
         {
@@ -39,8 +40,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         }
         else
         {
+            //PlayerSample.SetActive(true);
+            //PlayerSample.transform.position = SpawnPonts[id - 1].position;
+            //PlayerSample.transform.rotation = Quaternion.identity;
             //если ок, то создаем префаб в точке взятую из листа
-            PhotonNetwork.Instantiate(PlayerSample.name,SpawnPonts[id-1].position,Quaternion.identity);
+            PhotonNetwork.Instantiate(PlayerSample.name, SpawnPonts[id - 1].position, Quaternion.identity);
         }
     }
 

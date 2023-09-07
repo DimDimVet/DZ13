@@ -11,8 +11,10 @@ public class HealtComponent : MonoBehaviour
     [HideInInspector] public bool Dead = false;
     //[SerializeField] private Text text;
     public bool statusEnemy;
+    private Text text;//DZ13
     private void Start()
     {
+        text = FindObjectOfType<TextHealt>().text;//DZ13
         StartCoroutine(Example());
     }
 
@@ -32,8 +34,7 @@ public class HealtComponent : MonoBehaviour
         {
             Healt += SettingsData.HealtPlayer;//по заданию 12, с повышением уцровня добавляем некое количество изначально
         }
-        GlobalConnectObjectPhoton.TextHealt.text = $"Healt = {Healt}";
-        //text.text = $"Healt = {Healt}";
+        text.text = $"Healt = {Healt}";
     }
 
     public void UpData()//для DZ11 обновить данные при изменение источника загрузки
@@ -49,8 +50,7 @@ public class HealtComponent : MonoBehaviour
     public void HealtContoll(int damage)
     {
         Healt -= damage;
-        //text.text = $"Healt = {Healt}";
-        GlobalConnectObjectPhoton.TextHealt.text = $"Healt = {Healt}";
+        text.text = $"Healt = {Healt}";
         if (Healt<=0)
         {
             Dead = true;

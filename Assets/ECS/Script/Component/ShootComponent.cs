@@ -17,8 +17,10 @@ public class ShootComponent : MonoBehaviour, IShootComponent
     public float ShootDelay;
     private float shootTime = float.MinValue;
     private BullComponent scrBullet;
+    private Text text;//DZ13
     private void Start()
     {
+        text = FindObjectOfType<TextCountBull>().text;//DZ13
         scrBullet = bullet.GetComponent<BullComponent>();
         StartCoroutine(Example());
     }
@@ -36,8 +38,7 @@ public class ShootComponent : MonoBehaviour, IShootComponent
 
     private void DataStart()
     {
-        GlobalConnectObjectPhoton.TextCountBull.text= $"Bullet = {Statistic.ShootCount}";
-        //text.text = $"Bullet = {Statistic.ShootCount}";
+        text.text = $"Bullet = {Statistic.ShootCount}";
     }
     private void Update()//проверяем состояние данных в статистике по DZ11
     {
@@ -63,8 +64,7 @@ public class ShootComponent : MonoBehaviour, IShootComponent
         gunExitParticle.Play();
         //static
         Statistic.ShootCount++;
-        GlobalConnectObjectPhoton.TextCountBull.text = $"Bullet = {Statistic.ShootCount}";
-        //text.text = $"Bullet = {Statistic.ShootCount}";
+        text.text = $"Bullet = {Statistic.ShootCount}";
 
         if (IsModeBull)
         {

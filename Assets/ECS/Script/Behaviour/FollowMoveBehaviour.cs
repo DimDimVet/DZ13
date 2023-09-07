@@ -29,8 +29,21 @@ public class FollowMoveBehaviour : MonoBehaviour, IBehaviour
         animator = GetComponent<Animator>();
         pointDefault = this.gameObject.transform.position;
     }
+
+    private void Update()
+    {
+        if (HealtComponent == null)//DZ13
+        {
+            HealtComponent = FindObjectOfType<HealtComponent>();//найдем объект с данным компонентом
+        }
+    }
     public void Behaver()
     {
+        if (HealtComponent==null)//DZ13
+        {
+            return;
+        }
+
         if (thisHealtComponent.Dead != true)
         {
 
@@ -40,7 +53,6 @@ public class FollowMoveBehaviour : MonoBehaviour, IBehaviour
             if (controlDistance <= activDistance)
             {
                 agent.destination = HealtComponent.transform.position;//Player запишем в цель
-
             }
             else
             {

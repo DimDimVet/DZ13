@@ -22,15 +22,14 @@ public class CharacterData : MonoBehaviour
         healtEnemy = d;
     }
 
-    //
-    //для DZ13 фотон
-    private void Start()
-    {
-        InventoryUIRoot = GlobalConnectObjectPhoton.InventoryUIRoot;
-    }
-    //
     private void CountScore(IHealtEnemy hEnemy)
     {
+        if (hEnemy==null)//DZ13
+        {
+            return;
+        }
+
+
         if (hEnemy.isUpData)
         {
             score += hEnemy.GetDamageEnemy();
@@ -57,6 +56,17 @@ public class CharacterData : MonoBehaviour
 
     private void Update()
     {
+        if (InventoryUIRoot == null)//DZ13
+        {
+            if (FindObjectOfType<Grid>()==null)
+            {
+                return;
+            }
+            else
+            {
+                InventoryUIRoot = FindObjectOfType<Grid>().gameObject;//найдем объект с данным компонентом
+            }
+        }
         CountScore(healtEnemy);
     }
 

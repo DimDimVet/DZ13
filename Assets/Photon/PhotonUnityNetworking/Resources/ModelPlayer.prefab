@@ -11958,6 +11958,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53e2f995d824d044ea042b2721facc99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveData: {fileID: 0}
+  loadLocalData: {fileID: 0}
+  loadFireBaseData: {fileID: 0}
   healtComponent: {fileID: 7747296799521460357}
   SettingsLoadData: {fileID: 11400000, guid: 4e3851c53b2f2034ebde4eb845abc2b0, type: 2}
 --- !u!114 &606222525

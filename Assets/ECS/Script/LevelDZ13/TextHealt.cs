@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TextHealtConnect : MonoBehaviour
+public class TextHealt : MonoBehaviour
 {
+    [HideInInspector] public Text text; 
     void Start()
     {
-        GlobalConnectObjectPhoton.TextHealt = this.gameObject.GetComponent<Text>();
+        text = this.gameObject.GetComponent<Text>();
     }
 
 }
