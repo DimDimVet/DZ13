@@ -17,7 +17,8 @@ public class GiveItemPickUp : MonoBehaviour, ICollisionsComponent, IConvertGameO
         for (int i = 0; i < colliders.Count; i++)
         {
             CharacterData characterData = colliders[i].GetComponent<CharacterData>();
-            if (characterData != null)
+
+            if (characterData != null && characterData.InventoryUIRoot!=null)
             {
                 GameObject item = GameObject.Instantiate(ItemUI,characterData.InventoryUIRoot.transform);
                 ICollisionsComponent newAbility = item.GetComponent<ICollisionsComponent>();//новый объект заполним  в лист
@@ -40,6 +41,4 @@ public class GiveItemPickUp : MonoBehaviour, ICollisionsComponent, IConvertGameO
         _entity = entity;//запишем в ентити найденый ентити
         _dstManager = dstManager;
     }
-
-
 }

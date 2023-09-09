@@ -8,6 +8,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 {
     public GameObject PlayerSample;
     public List<Transform> SpawnPonts;
+    //
+    public List<GameObject> InterObject;
+    public List<Transform> InterTransformObject;
 
     void Start()
     {
@@ -40,6 +43,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         }
         else
         {
+            for (int i = 0; i < InterTransformObject.Count; i++)
+            {
+                PhotonNetwork.Instantiate(InterObject[i].name, InterTransformObject[i].position, Quaternion.identity);
+            }
+           // PhotonNetwork.Instantiate(ObjectSample.name, Transform.position, Quaternion.identity);
+
             //PlayerSample.SetActive(true);
             //PlayerSample.transform.position = SpawnPonts[id - 1].position;
             //PlayerSample.transform.rotation = Quaternion.identity;

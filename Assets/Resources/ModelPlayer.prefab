@@ -11510,7 +11510,6 @@ MonoBehaviour:
   bullet: {fileID: 534099674461658100, guid: 13be5b3de4f179e42ad7e29c460a8242, type: 3}
   bulletSpeed: 1
   outBullet: {fileID: 1891823692675688576}
-  objectText: {fileID: 0}
   gunExitParticle: {fileID: 1891823694178905267}
   IsModeBull: 0
   CollisionAction: []
