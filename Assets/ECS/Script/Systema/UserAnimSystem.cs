@@ -9,12 +9,19 @@ public class UserAnimSystem : ComponentSystem
     private float2 distans;
     protected override void OnCreate()
     {
+        
         //получим результат запроса всех сущностей 
         animQuery = GetEntityQuery(ComponentType.ReadOnly<AnimData>(), ComponentType.ReadOnly<Animator>(),
                                    ComponentType.ReadOnly<HealtComponent>());
     }
     protected override void OnUpdate()
     {
+        if (animQuery==null)
+        {
+            Debug.Log(animQuery);
+            return;
+
+        }
         //при каждом кадре ищем в сущностях изменеия структуры InputData
         Entities.With(animQuery).ForEach
             (
